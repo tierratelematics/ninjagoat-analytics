@@ -9,13 +9,15 @@ class AnalyticsProvider implements IAnalyticsProvider {
     client: UniversalAnalytics.Client;
 
     constructor(@inject("IAnalyticsConfig") @optional() private config: IAnalyticsConfig = null) {
+        this.initialize();
     }
 
-    initialize(): void {
+    private initialize(): void {
         if (!this.config)
             throw(Error("analytic configs required"));
 
-        this.client = UniversalAnalytics(this.config.accountID, this.config.uuid, this.config.opts);
+        if (!this.client)
+            this.client = UniversalAnalytics(this.config.accountID, this.config.uuid, this.config.opts);
     }
 
     pageview(args: IPageViewArgs): void {
