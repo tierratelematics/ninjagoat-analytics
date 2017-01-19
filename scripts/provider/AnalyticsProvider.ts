@@ -9,7 +9,6 @@ class AnalyticsProvider implements IAnalyticsProvider {
     client: any;
 
     constructor(@inject("IAnalyticsConfig") private config: IAnalyticsConfig = null) {
-        this.client = universalAnalytics(this.config.accountID, this.config.uuid, this.config.opts);
     }
 
     pageview(path: string) {
@@ -25,6 +24,9 @@ class AnalyticsProvider implements IAnalyticsProvider {
             this.client.event(paramsOrCategory).send();
     }
 
+    initialize(){
+        this.client = universalAnalytics(this.config.accountID, this.config.uuid, this.config.opts);
+    }
 }
 
 export default AnalyticsProvider;
