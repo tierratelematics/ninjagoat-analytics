@@ -10,7 +10,7 @@ class RouteAnalyticsStrategy implements IRouteAnalyticsStrategy {
     constructor(@inject("IAnalyticsProvider") private analyticsProvider: IAnalyticsProvider) {
     }
 
-    enter(entry: RegistryEntry<any>, nextState: RouterState) {
+    enter(entry: RegistryEntry<any>, nextState: RouterState){
         let needTracking = <boolean>Reflect.getMetadata("ninjagoat:page", entry.construct);
         if (needTracking)
             this.analyticsProvider.pageview(nextState.location.pathname);
