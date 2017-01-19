@@ -8,7 +8,7 @@ const universalAnalytics = require("universal-analytics");
 class AnalyticsProvider implements IAnalyticsProvider {
     client: any;
 
-    constructor(@inject("IAnalyticsConfig") private config: IAnalyticsConfig = null) {
+    constructor(@inject("IAnalyticsConfig") private config: IAnalyticsConfig) {
     }
 
     pageview(path: string) {
