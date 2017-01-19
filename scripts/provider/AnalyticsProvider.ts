@@ -2,13 +2,11 @@ import IAnalyticsProvider from "./IAnalyticsProvider";
 import {inject, injectable} from "inversify";
 import IAnalyticsConfig from "../IAnalyticsConfig";
 import {isString} from "lodash";
-import UniversalAnalytics = require("universal-analytics");
-
 const universalAnalytics = require("universal-analytics");
 
 @injectable()
 class AnalyticsProvider implements IAnalyticsProvider {
-    client: UniversalAnalytics.Client;
+    client: any;
 
     constructor(@inject("IAnalyticsConfig") private config: IAnalyticsConfig = null) {
     }
@@ -27,7 +25,7 @@ class AnalyticsProvider implements IAnalyticsProvider {
     }
 
     initialize() {
-        this.client = universalAnalytics(this.config.accountID, this.config.uuid, this.config.opts);
+        this.client = universalAnalytics(this.config.accountID);
     }
 }
 

@@ -1,11 +1,10 @@
-import IRouteAnalyticsStrategy from "./IRouteAnalyticsStrategy";
 import IAnalyticsProvider from "../provider/IAnalyticsProvider";
-import {RegistryEntry} from "ninjagoat";
+import {RegistryEntry, IRouteStrategy} from "ninjagoat";
 import {RouterState} from "react-router";
 import {inject, injectable} from "inversify";
 
 @injectable()
-class RouteAnalyticsStrategy implements IRouteAnalyticsStrategy {
+class RouteAnalyticsStrategy implements IRouteStrategy {
 
     constructor(@inject("IAnalyticsProvider") private analyticsProvider: IAnalyticsProvider) {
     }

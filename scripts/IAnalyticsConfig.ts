@@ -1,7 +1,5 @@
 interface IAnalyticsConfig {
-    accountID: string,
-    uuid?: string,
-    opts?: Object
+    accountID: string
 }
 
 export default IAnalyticsConfig;
