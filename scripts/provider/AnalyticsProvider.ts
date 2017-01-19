@@ -2,11 +2,13 @@ import IAnalyticsProvider from "./IAnalyticsProvider";
 import {inject, injectable} from "inversify";
 import IAnalyticsConfig from "../IAnalyticsConfig";
 import {isString} from "lodash";
+import UniversalAnalytics = require("universal-analytics");
+
 const universalAnalytics = require("universal-analytics");
 
 @injectable()
 class AnalyticsProvider implements IAnalyticsProvider {
-    client: any;
+    client: UniversalAnalytics.Client;
 
     constructor(@inject("IAnalyticsConfig") private config: IAnalyticsConfig = null) {
     }
