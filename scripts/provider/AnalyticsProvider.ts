@@ -1,9 +1,10 @@
 import IAnalyticsProvider from "./IAnalyticsProvider";
-import {inject, optional} from "inversify";
+import {inject, injectable} from "inversify";
 import IAnalyticsConfig from "../IAnalyticsConfig";
 import {isString} from "lodash";
 const universalAnalytics = require("universal-analytics");
 
+@injectable()
 class AnalyticsProvider implements IAnalyticsProvider {
     client: any;
 
