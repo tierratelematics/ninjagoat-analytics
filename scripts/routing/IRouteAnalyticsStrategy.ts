@@ -1,4 +1,4 @@
-interface IRouteAnalyticsStrategy{
+interface IRouteAnalyticsStrategy {
     enter();
 }
 
