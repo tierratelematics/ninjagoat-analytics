@@ -1,5 +1,6 @@
 import {IModule} from "ninjagoat";
 import {interfaces} from "inversify";
+import {IViewModelRegistry, IServiceLocator} from "ninjagoat";
 
 class AnalyticsModule implements IModule {
 
@@ -8,5 +9,7 @@ class AnalyticsModule implements IModule {
     };
 
     register(registry: IViewModelRegistry, serviceLocator?: IServiceLocator, overrides?: any): void {
+
     }
+
 }

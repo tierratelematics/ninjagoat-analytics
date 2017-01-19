@@ -1,9 +1,9 @@
-import IPageViewArgs from "./IPageViewArgs";
-import IEventArgs from "./IEventArgs";
-
 interface IAnalyticsProvider {
-    pageview(args: IPageViewArgs): void;
-    event(args: IEventArgs): void;
+    pageview(path: string);
+
+    event(params: Object);
+    event(category: string, action: string, label: string, value: any);
+    event(paramsOrCategory: Object | string, action?: string, label?: string, value?: any);
 }
 
 export default IAnalyticsProvider;

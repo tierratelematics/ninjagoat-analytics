@@ -1,31 +1,27 @@
 import IAnalyticsProvider from "./IAnalyticsProvider";
 import {inject, optional} from "inversify";
-import UniversalAnalytics = require("universal-analytics");
 import IAnalyticsConfig from "../IAnalyticsConfig";
-import IPageViewArgs from "./IPageViewArgs";
-import IEventArgs from "./IEventArgs";
+import {isString} from "lodash";
+const universalAnalytics = require("universal-analytics");
 
 class AnalyticsProvider implements IAnalyticsProvider {
-    client: UniversalAnalytics.Client;
+    client: any;
 
-    constructor(@inject("IAnalyticsConfig") @optional() private config: IAnalyticsConfig = null) {
-        this.initialize();
+    constructor(@inject("IAnalyticsConfig") private config: IAnalyticsConfig = null) {
+        this.client = universalAnalytics(this.config.accountID, this.config.uuid, this.config.opts);
     }
 
-    private initialize(): void {
-        if (!this.config)
-            throw(Error("analytic configs required"));
-
-        if (!this.client)
-            this.client = UniversalAnalytics(this.config.accountID, this.config.uuid, this.config.opts);
+    pageview(path: string) {
+        this.client.pageview(path).send();
     }
 
-    pageview(args: IPageViewArgs): void {
-        this.client.pageview(args).send();
-    }
-
-    event(args: IEventArgs): void {
-        this.client.event(args).send();
+    event(params: Object);
+    event(category: string, action: string, label: string, value: any);
+    event(paramsOrCategory: Object | string, action?: string, label?: string, value?: any){
+        if(isString(paramsOrCategory))
+            this.client.event(paramsOrCategory, action, label, value).send();
+        else
+            this.client.event(paramsOrCategory).send();
     }
 
 }
