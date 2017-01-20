@@ -1,30 +1,30 @@
 import IAnalyticsProvider from "../provider/IAnalyticsProvider";
 import {RegistryEntry, IRouteStrategy} from "ninjagoat";
 import {RouterState} from "react-router";
-import {inject, injectable} from "inversify";
+import {inject, injectable, optional} from "inversify";
 import * as Bluebird from "bluebird";
 
 @injectable()
-class RouteAnalyticsStrategy implements IRouteStrategy {
+class TrackPageRouteStrategy implements IRouteStrategy {
 
     constructor(@inject("IAnalyticsProvider") private analyticsProvider: IAnalyticsProvider,
-                @inject("IRouteStrategy") private routeStrategy: IRouteStrategy) {
+                @inject("IRouteStrategy") @optional() private routeStrategy: IRouteStrategy) {
     }
 
     async enter(entry: RegistryEntry<any>, nextState: RouterState): Bluebird<string> {
         try {
-            if(this.routeStrategy)
-                await this.routeStrategy.enter(entry,nextState);
+            if (this.routeStrategy)
+                await this.routeStrategy.enter(entry, nextState);
         }
-        catch(error){
+        catch (error) {
 
         }
 
         let needTracking = <boolean>Reflect.getMetadata("ninjagoat:page", entry.construct);
         if (needTracking)
             this.analyticsProvider.pageview(nextState.location.pathname);
-        return Bluebird.resolve("");
+        Bluebird.resolve("");
     }
 }
 
-export default RouteAnalyticsStrategy;
+export default TrackPageRouteStrategy;
