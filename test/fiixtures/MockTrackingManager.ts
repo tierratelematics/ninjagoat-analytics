@@ -1,6 +1,6 @@
-import IAnalyticsProvider from "../../scripts/interfaces/IAnalyticsProvider";
+import {ITrackingManager} from "../../scripts/interfaces/ITrackingManager";
 
-export class MockAnalyticsProvider implements IAnalyticsProvider{
+export class MockTrackingManager implements ITrackingManager{
 
     trackPage(path: string) {
     }

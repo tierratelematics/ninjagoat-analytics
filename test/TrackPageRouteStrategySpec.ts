@@ -4,27 +4,27 @@ import * as TypeMoq from "typemoq";
 import TrackPageRouteStrategy from "../scripts/TrackPageRouteStrategy";
 import {RouterState} from "react-router";
 import MockTestLocation from "./fiixtures/MockLocation";
-import IAnalyticsProvider from "../scripts/interfaces/IAnalyticsProvider";
-import {MockAnalyticsProvider} from "./fiixtures/MockAnalyticsProvider";
 import {TrackedViewModel, UntrackedViewModel} from "./fiixtures/ViewModels";
+import {ITrackingManager} from "../scripts/interfaces/ITrackingManager";
+import {MockTrackingManager} from "./fiixtures/MockTrackingManager";
 import {Location} from "history";
 
 describe("Given a TrackPageRouteStrategy", () => {
     let subject: TrackPageRouteStrategy,
         routerState: RouterState,
         location: TypeMoq.Mock<Location>,
-        analyticsProvider: TypeMoq.Mock<IAnalyticsProvider>;
+        trackingManager: TypeMoq.Mock<ITrackingManager>;
 
     beforeEach(() => {
         location = TypeMoq.Mock.ofType(MockTestLocation);
         routerState = {location: location.object, routes: null, params: null, components: null};
-        analyticsProvider = TypeMoq.Mock.ofType(MockAnalyticsProvider);
-        subject = new TrackPageRouteStrategy(analyticsProvider.object, null);
+        trackingManager = TypeMoq.Mock.ofType(MockTrackingManager);
+        subject = new TrackPageRouteStrategy(trackingManager.object, null);
     });
 
     context("when a tracking of page is requested", () => {
         beforeEach(() => {
-            analyticsProvider.setup(a => a.trackPage("/testLocation"));
+            trackingManager.setup(a => a.trackPage("/testLocation"));
         });
 
         it("should send a page view track", () => {
@@ -34,7 +34,7 @@ describe("Given a TrackPageRouteStrategy", () => {
                 observableFactory: null,
                 parameters: null
             }, routerState);
-            analyticsProvider.verify(a => a.trackPage("/testLocation"), TypeMoq.Times.once());
+            trackingManager.verify(a => a.trackPage("/testLocation"), TypeMoq.Times.once());
         });
     });
 
@@ -46,7 +46,7 @@ describe("Given a TrackPageRouteStrategy", () => {
                 observableFactory: null,
                 parameters: null
             }, routerState);
-            analyticsProvider.verify(a => a.trackPage("/testLocation"), TypeMoq.Times.never());
+            trackingManager.verify(a => a.trackPage("/testLocation"), TypeMoq.Times.never());
         });
     });
 });

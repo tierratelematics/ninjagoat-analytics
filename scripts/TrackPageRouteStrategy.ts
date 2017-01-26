@@ -1,13 +1,13 @@
-import IAnalyticsProvider from "./interfaces/IAnalyticsProvider";
 import {RegistryEntry, IRouteStrategy} from "ninjagoat";
 import {RouterState} from "react-router";
 import {inject, injectable, optional} from "inversify";
+import {ITrackingManager} from "./interfaces/ITrackingManager";
 import * as Bluebird from "bluebird";
 
 @injectable()
 class TrackPageRouteStrategy implements IRouteStrategy {
 
-    constructor(@inject("IAnalyticsProvider") private analyticsProvider: IAnalyticsProvider,
+    constructor(@inject("ITrackingManager") private trackingManager: ITrackingManager,
                 @inject("IRouteStrategy") @optional() private routeStrategy: IRouteStrategy) {
     }
 
@@ -22,7 +22,7 @@ class TrackPageRouteStrategy implements IRouteStrategy {
 
         let needTracking = <boolean>Reflect.getMetadata("ninjagoat:page", entry.construct);
         if (needTracking)
-            this.analyticsProvider.trackPage(nextState.location.pathname);
+            this.trackingManager.trackPage(nextState.location.pathname);
         Bluebird.resolve("");
     }
 }
