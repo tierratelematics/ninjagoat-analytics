@@ -24,7 +24,7 @@ describe("Given a TrackingManager", () => {
     });
 
     context("when tracking a event", () => {
-        beforeEach(() => event = {category: "testCategory", label: "provaLabel"});
+        beforeEach(() => event = {category: "testCategory", label: "testLabel"});
 
         it("every provider should track it", () => {
             subject.trackEvent(event);
