@@ -3,21 +3,18 @@ import expect = require("expect.js");
 import * as TypeMoq from "typemoq";
 import TrackPageRouteStrategy from "../scripts/TrackPageRouteStrategy";
 import {RouterState} from "react-router";
-import MockTestLocation from "./fiixtures/MockLocation";
 import {TrackedViewModel, UntrackedViewModel} from "./fiixtures/ViewModels";
 import {ITrackingManager} from "../scripts/interfaces/ITrackingManager";
 import {MockTrackingManager} from "./fiixtures/MockTrackingManager";
-import {Location} from "history";
+import TestLocation from "./fiixtures/TestLocation";
 
 describe("Given a TrackPageRouteStrategy", () => {
     let subject: TrackPageRouteStrategy,
         routerState: RouterState,
-        location: TypeMoq.Mock<Location>,
         trackingManager: TypeMoq.Mock<ITrackingManager>;
 
     beforeEach(() => {
-        location = TypeMoq.Mock.ofType(MockTestLocation);
-        routerState = {location: location.object, routes: null, params: null, components: null};
+        routerState = {location: new TestLocation(), routes: null, params: null, components: null};
         trackingManager = TypeMoq.Mock.ofType(MockTrackingManager);
         subject = new TrackPageRouteStrategy(trackingManager.object, null);
     });

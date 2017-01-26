@@ -1,6 +1,6 @@
 import * as History from "history";
 
-class MockTestLocation {
+class TestLocation {
     pathname: History.Pathname = "/testLocation";
     search: History.Search;
     query: History.Query;
@@ -10,4 +10,4 @@ class MockTestLocation {
     basename?: string;
 }
 
-export default MockTestLocation;
+export default TestLocation;
