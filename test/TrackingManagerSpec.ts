@@ -23,12 +23,19 @@ describe("Given a TrackingManager", () => {
         });
     });
 
-    context("when tracking a event", () => {
+    context("when tracking a custom event", () => {
         beforeEach(() => event = {category: "testCategory", label: "testLabel"});
 
         it("every provider should track it", () => {
             subject.trackEventOf(event);
             analyticsProvider.verify(p => p.trackEventOf(TypeMoq.It.isValue(event)), TypeMoq.Times.once());
+        });
+    });
+
+    context("when tracking a standard event", () => {
+        it("every provider should track it", () => {
+            subject.trackEvent("testCategory", "testAction", "testLabel", null);
+            analyticsProvider.verify(p => p.trackEvent("testCategory", "testAction", "testLabel", null), TypeMoq.Times.once());
         });
     });
 
