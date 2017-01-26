@@ -5,7 +5,7 @@ import {isString} from "lodash";
 const universalAnalytics = require("universal-analytics");
 
 @injectable()
-class AnalyticsProvider implements IAnalyticsProvider {
+class GoogleAnalyticsProvider implements IAnalyticsProvider {
     client: any;
 
     constructor(@inject("IAnalyticsConfig") private config: IAnalyticsConfig) {
@@ -29,4 +29,4 @@ class AnalyticsProvider implements IAnalyticsProvider {
     }
 }
 
-export default AnalyticsProvider;
+export default GoogleAnalyticsProvider;

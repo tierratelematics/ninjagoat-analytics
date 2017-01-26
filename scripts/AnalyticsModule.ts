@@ -3,7 +3,7 @@ import {interfaces} from "inversify";
 import {IViewModelRegistry, IServiceLocator, IRouteStrategy} from "ninjagoat";
 import RouteAnalyticsStrategy from "./routing/TrackPageRouteStrategy";
 import IAnalyticsProvider from "./provider/IAnalyticsProvider";
-import AnalyticsProvider from "./provider/AnalyticsProvider";
+import AnalyticsProvider from "./provider/GoogleAnalyticsProvider";
 
 class AnalyticsModule implements IModule {
 
