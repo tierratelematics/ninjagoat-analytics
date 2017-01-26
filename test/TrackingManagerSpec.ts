@@ -2,7 +2,7 @@ import "reflect-metadata";
 import expect = require("expect.js");
 import * as TypeMoq from "typemoq";
 import {ITrackingManager} from "../scripts/interfaces/ITrackingManager";
-import {MockAnalyticsProvider} from "./fiixtures/MockAnalyticsProvider";
+import {MockAnalyticsProvider} from "./fixtures/MockAnalyticsProvider";
 import TrackingManager from "../scripts/TrackingManager";
 import IAnalyticsProvider from "../scripts/interfaces/IAnalyticsProvider";
 

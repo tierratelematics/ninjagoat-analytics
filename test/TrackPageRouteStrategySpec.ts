@@ -3,10 +3,10 @@ import expect = require("expect.js");
 import * as TypeMoq from "typemoq";
 import TrackPageRouteStrategy from "../scripts/TrackPageRouteStrategy";
 import {RouterState} from "react-router";
-import {TrackedViewModel, UntrackedViewModel} from "./fiixtures/ViewModels";
+import {TrackedViewModel, UntrackedViewModel} from "./fixtures/ViewModels";
 import {ITrackingManager} from "../scripts/interfaces/ITrackingManager";
-import {MockTrackingManager} from "./fiixtures/MockTrackingManager";
-import TestLocation from "./fiixtures/TestLocation";
+import {MockTrackingManager} from "./fixtures/MockTrackingManager";
+import TestLocation from "./fixtures/TestLocation";
 
 describe("Given a TrackPageRouteStrategy", () => {
     let subject: TrackPageRouteStrategy,
