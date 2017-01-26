@@ -11,17 +11,17 @@ class GoogleAnalyticsProvider implements IAnalyticsProvider {
     constructor(@inject("IAnalyticsConfig") private config: IAnalyticsConfig) {
     }
 
-    pageview(path: string) {
-        this.client.pageview(path).send();
+    trackPage(path: string) {
+        this.client.trackPage(path).send();
     }
 
-    event(params: Object);
-    event(category: string, action: string, label: string, value: any);
-    event(paramsOrCategory: Object | string, action?: string, label?: string, value?: any) {
+    trackEvent(params: Object);
+    trackEvent(category: string, action: string, label: string, value: any);
+    trackEvent(paramsOrCategory: Object | string, action?: string, label?: string, value?: any) {
         if (isString(paramsOrCategory))
-            this.client.event(paramsOrCategory, action, label, value).send();
+            this.client.trackEvent(paramsOrCategory, action, label, value).send();
         else
-            this.client.event(paramsOrCategory).send();
+            this.client.trackEvent(paramsOrCategory).send();
     }
 
     initialize() {

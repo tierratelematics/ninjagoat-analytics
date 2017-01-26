@@ -1,9 +1,9 @@
 interface IAnalyticsProvider {
-    pageview(path: string);
+    trackPage(path: string);
 
-    event(params: Object);
-    event(category: string, action: string, label: string, value: any);
-    event(paramsOrCategory: Object | string, action?: string, label?: string, value?: any);
+    trackEvent(params: Object);
+    trackEvent(category: string, action: string, label: string, value: any);
+    trackEvent(paramsOrCategory: Object | string, action?: string, label?: string, value?: any);
 }
 
 export default IAnalyticsProvider;

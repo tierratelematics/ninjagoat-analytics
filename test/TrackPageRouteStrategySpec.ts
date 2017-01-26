@@ -24,7 +24,7 @@ describe("Given a TrackPageRouteStrategy", () => {
 
     context("when a tracking of page is requested", () => {
         beforeEach(() => {
-            analyticsProvider.setup(a => a.pageview("/testLocation"));
+            analyticsProvider.setup(a => a.trackPage("/testLocation"));
         });
 
         it("should send a page view track", () => {
@@ -34,7 +34,7 @@ describe("Given a TrackPageRouteStrategy", () => {
                 observableFactory: null,
                 parameters: null
             }, routerState);
-            analyticsProvider.verify(a => a.pageview("/testLocation"), TypeMoq.Times.once());
+            analyticsProvider.verify(a => a.trackPage("/testLocation"), TypeMoq.Times.once());
         });
     });
 
@@ -46,7 +46,7 @@ describe("Given a TrackPageRouteStrategy", () => {
                 observableFactory: null,
                 parameters: null
             }, routerState);
-            analyticsProvider.verify(a => a.pageview("/testLocation"), TypeMoq.Times.never());
+            analyticsProvider.verify(a => a.trackPage("/testLocation"), TypeMoq.Times.never());
         });
     });
 });
