@@ -18,10 +18,11 @@ class GoogleAnalyticsProvider implements IAnalyticsProvider {
     trackEvent(params: Object);
     trackEvent(category: string, action: string, label: string, value: any);
     trackEvent(paramsOrCategory: Object | string, action?: string, label?: string, value?: any) {
-        if (isString(paramsOrCategory))
+        if (isString(paramsOrCategory)) {
             this.client.trackEvent(paramsOrCategory, action, label, value).send();
-        else
+        } else {
             this.client.trackEvent(paramsOrCategory).send();
+        }
     }
 
     initialize() {
