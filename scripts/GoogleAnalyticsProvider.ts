@@ -1,7 +1,6 @@
 import IAnalyticsProvider from "./interfaces/IAnalyticsProvider";
 import {inject, injectable} from "inversify";
 import IAnalyticsConfig from "./interfaces/IAnalyticsConfig";
-import {isString} from "lodash";
 const universalAnalytics = require("universal-analytics");
 
 @injectable()
@@ -15,14 +14,12 @@ class GoogleAnalyticsProvider implements IAnalyticsProvider {
         this.client.trackPage(path).send();
     }
 
-    trackEvent(params: Object);
-    trackEvent(category: string, action: string, label: string, value: any);
-    trackEvent(paramsOrCategory: Object | string, action?: string, label?: string, value?: any) {
-        if (isString(paramsOrCategory)) {
-            this.client.trackEvent(paramsOrCategory, action, label, value).send();
-        } else {
-            this.client.trackEvent(paramsOrCategory).send();
-        }
+    trackEventOf(event: Object){
+        this.client.trackEvent(event).send();
+    }
+
+    trackEvent(category: string, action: string, label: string, value: any){
+        this.client.trackEvent(category, action, label, value).send();
     }
 
     initialize() {

@@ -27,8 +27,8 @@ describe("Given a TrackingManager", () => {
         beforeEach(() => event = {category: "testCategory", label: "testLabel"});
 
         it("every provider should track it", () => {
-            subject.trackEvent(event);
-            analyticsProvider.verify(p => p.trackEvent(TypeMoq.It.isValue(event)), TypeMoq.Times.once());
+            subject.trackEventOf(event);
+            analyticsProvider.verify(p => p.trackEventOf(TypeMoq.It.isValue(event)), TypeMoq.Times.once());
         });
     });
 

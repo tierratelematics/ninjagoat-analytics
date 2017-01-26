@@ -1,7 +1,7 @@
 import {ITrackingManager} from "./interfaces/ITrackingManager";
 import {multiInject, injectable} from "inversify";
 import IAnalyticsProvider from "./interfaces/IAnalyticsProvider";
-import {forEach, isString} from "lodash";
+import {forEach} from "lodash";
 
 @injectable()
 class TrackingManager implements ITrackingManager {
@@ -10,19 +10,19 @@ class TrackingManager implements ITrackingManager {
     }
 
     trackPage(path: string) {
-        forEach(this.analyticsProviders, (p: IAnalyticsProvider) => p.trackPage(path));
+        forEach(this.analyticsProviders, (provider: IAnalyticsProvider) => provider.trackPage(path));
     }
 
-    trackEvent(params: Object);
-    trackEvent(category: string, action: string, label: string, value: any);
-    trackEvent(paramsOrCategory: Object | string, action?: string, label?: string, value?: any) {
-        forEach(this.analyticsProviders, (p: IAnalyticsProvider) => {
-            (isString(paramsOrCategory)) ? p.trackEvent(paramsOrCategory, action, label, value) : p.trackEvent(paramsOrCategory);
-        });
+    trackEventOf(event: Object) {
+        forEach(this.analyticsProviders, (provider: IAnalyticsProvider) => provider.trackEventOf(event));
+    }
+
+    trackEvent(category: string, action: string, label: string, value: any) {
+        forEach(this.analyticsProviders, (provider: IAnalyticsProvider) => provider.trackEvent(category, action, label, value));
     }
 
     initialize() {
-        forEach(this.analyticsProviders, (p: IAnalyticsProvider) => p.initialize());
+        forEach(this.analyticsProviders, (provider: IAnalyticsProvider) => provider.initialize());
     }
 }
 
