@@ -1,6 +1,6 @@
 import IAnalyticsProvider from "../../scripts/interfaces/IAnalyticsProvider";
 
-export class MockAnalyticsProvider implements IAnalyticsProvider{
+export class MockAnalyticsProvider implements IAnalyticsProvider {
 
     trackPage(path: string) {
     }
@@ -8,9 +8,8 @@ export class MockAnalyticsProvider implements IAnalyticsProvider{
     trackEvent(params: Object)
     trackEvent(category: string, action: string, label: string, value: any)
     trackEvent(paramsOrCategory: Object|string, action?: string, label?: string, value?: any) {
-
     }
 
-    initialize(){
+    initialize() {
     }
 }
