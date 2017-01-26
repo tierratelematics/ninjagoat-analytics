@@ -1,4 +1,4 @@
-import IAnalyticsProvider from "../provider/IAnalyticsProvider";
+import IAnalyticsProvider from "./interfaces/IAnalyticsProvider";
 import {RegistryEntry, IRouteStrategy} from "ninjagoat";
 import {RouterState} from "react-router";
 import {inject, injectable, optional} from "inversify";

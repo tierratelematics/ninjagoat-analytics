@@ -1,10 +1,10 @@
 import "reflect-metadata";
 import expect = require("expect.js");
 import * as TypeMoq from "typemoq";
-import TrackPageRouteStrategy from "../scripts/routing/TrackPageRouteStrategy";
+import TrackPageRouteStrategy from "../scripts/TrackPageRouteStrategy";
 import {RouterState} from "react-router";
 import MockTestLocation from "./fiixtures/MockLocation";
-import IAnalyticsProvider from "../scripts/provider/IAnalyticsProvider";
+import IAnalyticsProvider from "../scripts/interfaces/IAnalyticsProvider";
 import {MockAnalyticsProvider} from "./fiixtures/MockAnalyticsProvider";
 import {TrackedViewModel, UntrackedViewModel} from "./fiixtures/ViewModels";
 import {Location} from "history";

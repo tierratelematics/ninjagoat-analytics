@@ -1,4 +1,4 @@
-import IAnalyticsProvider from "../../scripts/provider/IAnalyticsProvider";
+import IAnalyticsProvider from "../../scripts/interfaces/IAnalyticsProvider";
 
 export class MockAnalyticsProvider implements IAnalyticsProvider{
 

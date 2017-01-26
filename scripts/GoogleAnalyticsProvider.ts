@@ -1,6 +1,6 @@
-import IAnalyticsProvider from "./IAnalyticsProvider";
+import IAnalyticsProvider from "./interfaces/IAnalyticsProvider";
 import {inject, injectable} from "inversify";
-import IAnalyticsConfig from "../IAnalyticsConfig";
+import IAnalyticsConfig from "./interfaces/IAnalyticsConfig";
 import {isString} from "lodash";
 const universalAnalytics = require("universal-analytics");
 
