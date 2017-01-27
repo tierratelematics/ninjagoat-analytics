@@ -10,15 +10,15 @@ class GoogleAnalyticsProvider implements IAnalyticsProvider {
     constructor(@inject("IAnalyticsConfig") private config: IAnalyticsConfig) {
     }
 
-    trackPage(path: string) {
+    forPage(path: string) {
         this.client.trackPage(path).send();
     }
 
-    trackEventOf(event: Object){
+    forEventOf(event: Object){
         this.client.trackEvent(event).send();
     }
 
-    trackEvent(category: string, action: string, label: string, value: any){
+    forEvent(category: string, action: string, label: string, value: any){
         this.client.trackEvent(category, action, label, value).send();
     }
 

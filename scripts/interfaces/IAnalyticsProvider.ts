@@ -1,7 +1,7 @@
 interface IAnalyticsProvider {
-    trackPage(path: string);
-    trackEventOf(event: Object);
-    trackEvent(category: string, action: string, label: string, value: any);
+    forPage(path: string);
+    forEventOf(event: Object);
+    forEvent(category: string, action: string, label: string, value: any);
     initialize();
 }
 

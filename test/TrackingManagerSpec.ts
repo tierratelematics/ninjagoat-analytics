@@ -18,8 +18,8 @@ describe("Given a TrackingManager", () => {
 
     context("when tracking a page", () => {
         it("every provider should track it", () => {
-            subject.trackPage("/testLocation");
-            analyticsProvider.verify(p => p.trackPage("/testLocation"), TypeMoq.Times.once());
+            subject.forPage("/testLocation");
+            analyticsProvider.verify(p => p.forPage("/testLocation"), TypeMoq.Times.once());
         });
     });
 
@@ -27,15 +27,15 @@ describe("Given a TrackingManager", () => {
         beforeEach(() => event = {category: "testCategory", label: "testLabel"});
 
         it("every provider should track it", () => {
-            subject.trackEventOf(event);
-            analyticsProvider.verify(p => p.trackEventOf(TypeMoq.It.isValue(event)), TypeMoq.Times.once());
+            subject.forEventOf(event);
+            analyticsProvider.verify(p => p.forEventOf(TypeMoq.It.isValue(event)), TypeMoq.Times.once());
         });
     });
 
     context("when tracking a standard event", () => {
         it("every provider should track it", () => {
-            subject.trackEvent("testCategory", "testAction", "testLabel", null);
-            analyticsProvider.verify(p => p.trackEvent("testCategory", "testAction", "testLabel", null), TypeMoq.Times.once());
+            subject.forEvent("testCategory", "testAction", "testLabel", null);
+            analyticsProvider.verify(p => p.forEvent("testCategory", "testAction", "testLabel", null), TypeMoq.Times.once());
         });
     });
 

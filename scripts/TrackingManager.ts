@@ -9,20 +9,20 @@ class TrackingManager implements ITrackingManager {
     constructor(@multiInject("IAnalyticsProvider") private analyticsProviders: IAnalyticsProvider[]) {
     }
 
-    trackPage(path: string) {
-        forEach(this.analyticsProviders, (provider: IAnalyticsProvider) => provider.trackPage(path));
+    forPage(path: string) {
+        forEach(this.analyticsProviders, (tracker: IAnalyticsProvider) => tracker.forPage(path));
     }
 
-    trackEventOf(event: Object) {
-        forEach(this.analyticsProviders, (provider: IAnalyticsProvider) => provider.trackEventOf(event));
+    forEventOf(event: Object) {
+        forEach(this.analyticsProviders, (tracker: IAnalyticsProvider) => tracker.forEventOf(event));
     }
 
-    trackEvent(category: string, action: string, label: string, value: any) {
-        forEach(this.analyticsProviders, (provider: IAnalyticsProvider) => provider.trackEvent(category, action, label, value));
+    forEvent(category: string, action: string, label: string, value: any) {
+        forEach(this.analyticsProviders, (tracker: IAnalyticsProvider) => tracker.forEvent(category, action, label, value));
     }
 
     initialize() {
-        forEach(this.analyticsProviders, (provider: IAnalyticsProvider) => provider.initialize());
+        forEach(this.analyticsProviders, (tracker: IAnalyticsProvider) => tracker.initialize());
     }
 }
 

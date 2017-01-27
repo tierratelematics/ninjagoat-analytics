@@ -22,7 +22,7 @@ class TrackPageRouteStrategy implements IRouteStrategy {
 
         let needTracking = <boolean>Reflect.getMetadata("ninjagoat:page", entry.construct);
         if (needTracking)
-            this.trackingManager.trackPage(nextState.location.pathname);
+            this.trackingManager.forPage(nextState.location.pathname);
         Bluebird.resolve("");
     }
 }

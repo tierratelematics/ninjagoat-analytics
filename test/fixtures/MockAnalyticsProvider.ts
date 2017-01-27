@@ -2,13 +2,13 @@ import IAnalyticsProvider from "../../scripts/interfaces/IAnalyticsProvider";
 
 export class MockAnalyticsProvider implements IAnalyticsProvider {
 
-    trackPage(path: string) {
+    forPage(path: string) {
     }
 
-    trackEventOf(event: Object) {
+    forEventOf(event: Object) {
     }
 
-    trackEvent(category: string, action: string, label: string, value: any) {
+    forEvent(category: string, action: string, label: string, value: any) {
     }
 
     initialize() {

@@ -19,9 +19,9 @@ describe("Given a TrackPageRouteStrategy", () => {
         subject = new TrackPageRouteStrategy(trackingManager.object, null);
     });
 
-    context("when a tracking of page is requested", () => {
+    context("when the tracking of page is requested", () => {
         beforeEach(() => {
-            trackingManager.setup(a => a.trackPage("/testLocation"));
+            trackingManager.setup(tracker => tracker.forPage("/testLocation"));
         });
 
         it("should send a page view track", () => {
@@ -31,11 +31,11 @@ describe("Given a TrackPageRouteStrategy", () => {
                 observableFactory: null,
                 parameters: null
             }, routerState);
-            trackingManager.verify(a => a.trackPage("/testLocation"), TypeMoq.Times.once());
+            trackingManager.verify(tracker => tracker.forPage("/testLocation"), TypeMoq.Times.once());
         });
     });
 
-    context("when a tracking of page is not requested", () => {
+    context("when the tracking of page is not requested", () => {
         it("should not send a page view track", () => {
             subject.enter({
                 construct: UntrackedViewModel,
@@ -43,7 +43,7 @@ describe("Given a TrackPageRouteStrategy", () => {
                 observableFactory: null,
                 parameters: null
             }, routerState);
-            trackingManager.verify(a => a.trackPage("/testLocation"), TypeMoq.Times.never());
+            trackingManager.verify(tracker => tracker.forPage("/testLocation"), TypeMoq.Times.never());
         });
     });
 });

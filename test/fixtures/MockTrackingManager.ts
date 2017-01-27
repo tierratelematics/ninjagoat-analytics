@@ -2,13 +2,13 @@ import {ITrackingManager} from "../../scripts/interfaces/ITrackingManager";
 
 export class MockTrackingManager implements ITrackingManager{
 
-    trackPage(path: string) {
+    forPage(path: string) {
     }
 
-    trackEventOf(event: Object) {
+    forEventOf(event: Object) {
     }
 
-    trackEvent(category: string, action: string, label: string, value: any) {
+    forEvent(category: string, action: string, label: string, value: any) {
     }
 
     initialize() {
