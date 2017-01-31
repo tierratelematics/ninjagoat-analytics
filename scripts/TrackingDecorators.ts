@@ -7,7 +7,7 @@ function Page() {
 
 function DoNotTrack(){
     return function(target: any){
-        Reflect.defineMetadata("NotTrack", true, target);
+        Reflect.defineMetadata("ninjagoatAnalytics:NotTrack", true, target);
         return target;
     }
 }

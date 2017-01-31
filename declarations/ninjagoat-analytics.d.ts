@@ -44,3 +44,4 @@ export class GoogleAnalyticsProvider implements IAnalyticsProvider {
 }
 
 export function Page();
+export function DoNotTrack();

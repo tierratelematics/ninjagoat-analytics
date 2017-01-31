@@ -1,5 +1,5 @@
 import {ObservableViewModel} from "ninjagoat";
-import {Page} from "../../scripts/TrackingDecorator";
+import {Page} from "../../scripts/TrackingDecorators";
 
 @Page()
 export class TrackedViewModel extends ObservableViewModel<void> {

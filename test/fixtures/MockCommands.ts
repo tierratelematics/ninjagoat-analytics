@@ -1,16 +1,15 @@
 import {CommandDecorators as command} from "ninjagoat-commands";
-import {DoNotTrack} from "../../scripts/TrackingDecorator";
+import {DoNotTrack} from "../../scripts/TrackingDecorators";
 
 @command.Type("DefaultCommand")
 @command.Endpoint("testEndpoint")
-class TrackedCommand {
+export class TrackedCommand {
     public foo:string = "bar";
 }
 
 @command.Type("DefaultCommand")
 @command.Endpoint("testEndpoint")
 @DoNotTrack()
-class UnTrackedCommand {
+export class UnTrackedCommand {
     public foo:string = "bar";
 }
-
