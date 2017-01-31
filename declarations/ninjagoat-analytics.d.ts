@@ -35,8 +35,6 @@ export class TrackPageRouteStrategy implements IRouteStrategy {
 }
 
 export class GoogleAnalyticsProvider implements IAnalyticsProvider {
-    client: any;
-
     constructor(config: IAnalyticsConfig);
 
     forPage(path: string);

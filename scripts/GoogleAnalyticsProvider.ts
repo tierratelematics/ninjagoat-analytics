@@ -5,7 +5,7 @@ const universalAnalytics = require("universal-analytics");
 
 @injectable()
 class GoogleAnalyticsProvider implements IAnalyticsProvider {
-    client: any;
+    private client: any;
 
     constructor(@inject("IAnalyticsConfig") private config: IAnalyticsConfig) {
     }
