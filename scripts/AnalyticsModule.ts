@@ -6,6 +6,7 @@ import IAnalyticsProvider from "./interfaces/IAnalyticsProvider";
 import GoogleAnalyticsProvider from "./GoogleAnalyticsProvider";
 import {ITrackingManager} from "./interfaces/ITrackingManager";
 import TrackingManager from "./TrackingManager";
+import TrackingCommandDispatcher from "./TrackingCommandDispatcher";
 
 class AnalyticsModule implements IModule {
 
@@ -13,6 +14,10 @@ class AnalyticsModule implements IModule {
         container.bind<IAnalyticsProvider>("IAnalyticsProvider").to(GoogleAnalyticsProvider).inSingletonScope();
         container.bind<ITrackingManager>("ITrackingManager").to(TrackingManager).inSingletonScope();
         container.bind<IRouteStrategy>("IRouteStrategy").to(RouteAnalyticsStrategy).inSingletonScope();
+
+        container.unbind("CommandDispatcher");
+        container.bind<CommandDispatcher>("TrackingCommandDispatcher").to(TrackingCommandDispatcher).inSingletonScope().whenInjectedInto(CommandDispatcherEnricher);
+        container.bind<CommandDispatcher>("CommandDispatcher").to(PostCommandDispatcher).inSingletonScope().whenInjectedInto(TrackingCommandDispatcher);
     };
 
     register(registry: IViewModelRegistry, serviceLocator?: IServiceLocator, overrides?: any): void {
