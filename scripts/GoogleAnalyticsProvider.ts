@@ -14,11 +14,11 @@ class GoogleAnalyticsProvider implements IAnalyticsProvider {
         this.client.trackPage(path).send();
     }
 
-    forEventOf(event: Object){
+    forEvent(event: Object){
         this.client.trackEvent(event).send();
     }
 
-    forEvent(category: string, action: string, label: string, value: any){
+    forEventWith(category: string, action: string, label: string, value: any){
         this.client.trackEvent(category, action, label, value).send();
     }
 

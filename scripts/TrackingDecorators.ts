@@ -4,15 +4,7 @@ function Page() {
         return target;
     }
 }
-
-function DoNotTrack() {
-    return function (target: any) {
-        Reflect.defineMetadata("ninjagoatAnalytics:NotTrack", true, target);
-        return target;
-    }
-}
-
-function TrackingData(category: string, action?: string, label?: string) {
+function Event(category: string, action?: string, label?: string) {
     return function (target: any) {
         Reflect.defineMetadata("ninjagoatAnalytics:category", category, target);
         Reflect.defineMetadata("ninjagoatAnalytics:action", action || "", target);
@@ -22,5 +14,4 @@ function TrackingData(category: string, action?: string, label?: string) {
 }
 
 export {Page};
-export {DoNotTrack};
-export {TrackingData};
+export {Event};

@@ -17,7 +17,7 @@ describe("Given a TrackingManager", () => {
     });
 
     context("when tracking a page", () => {
-        it("every provider should track it", () => {
+        it("should call the page tracking method of every provider registered", () => {
             subject.forPage("/testLocation");
             analyticsProvider.verify(p => p.forPage("/testLocation"), TypeMoq.Times.once());
         });
@@ -26,16 +26,16 @@ describe("Given a TrackingManager", () => {
     context("when tracking a custom event", () => {
         beforeEach(() => event = {category: "testCategory", label: "testLabel"});
 
-        it("every provider should track it", () => {
-            subject.forEventOf(event);
-            analyticsProvider.verify(p => p.forEventOf(TypeMoq.It.isValue(event)), TypeMoq.Times.once());
+        it("should call the custom event tracking method of every provider registered", () => {
+            subject.forEvent(event);
+            analyticsProvider.verify(p => p.forEvent(TypeMoq.It.isValue(event)), TypeMoq.Times.once());
         });
     });
 
     context("when tracking a standard event", () => {
-        it("every provider should track it", () => {
-            subject.forEvent("testCategory", "testAction", "testLabel", null);
-            analyticsProvider.verify(p => p.forEvent("testCategory", "testAction", "testLabel", null), TypeMoq.Times.once());
+        it("should call the standard event tracking method of every provider registered", () => {
+            subject.forEventWith("testCategory", "testAction", "testLabel", null);
+            analyticsProvider.verify(p => p.forEventWith("testCategory", "testAction", "testLabel", null), TypeMoq.Times.once());
         });
     });
 

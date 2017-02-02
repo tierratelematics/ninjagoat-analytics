@@ -21,30 +21,32 @@ describe("Given a trackingCommandDispatcher", () => {
         commandDispatcher = TypeMoq.Mock.ofType(MockCommandDispatcher);
         subject = new TrackingCommandDispatcher(trackingManager.object, commandDispatcher.object);
 
-        commandDispatcher.setup(dispatcher => dispatcher.dispatch(TypeMoq.It.isAny())).returns(() => Promise.resolve(""));
+        commandDispatcher.setup(dispatcher => dispatcher.dispatch(TypeMoq.It.isAny())).returns(() => Promise.resolve("url"));
     });
 
-    context("and a command that i want to track", () => {
+    context("and a command to be tracked", () => {
         beforeEach(() => {
             command = new TrackedCommand();
-            trackingManager.setup(t => t.forEvent("testCategory", "testAction", "testLabel", TypeMoq.It.isValue(command)));
+            trackingManager.setup(t => t.forEventWith("testCategory", "testAction", "testLabel", TypeMoq.It.isValue(command)));
         });
 
         it("should track it", () => {
-            subject.dispatch(command);
-            trackingManager.verify(t => t.forEvent("testCategory", "testAction", "testLabel", TypeMoq.It.isValue(command)), TypeMoq.Times.once());
-            commandDispatcher.verify(dispatcher => dispatcher.dispatch(TypeMoq.It.isValue(command)), TypeMoq.Times.once());
+            return subject.dispatch(command).then(() => {
+                trackingManager.verify(t => t.forEventWith("testCategory", "testAction", "testLabel", TypeMoq.It.isValue(command)), TypeMoq.Times.once());
+                commandDispatcher.verify(dispatcher => dispatcher.dispatch(TypeMoq.It.isValue(command)), TypeMoq.Times.once());
+            });
         });
     });
 
-    context("and a command that i want't to track", () => {
+    context("and a command to not be tracked", () => {
         beforeEach(() => command = new UnTrackedCommand());
 
         it("should not track it", () => {
-            subject.dispatch(command);
-            trackingManager.verify(t => t.forEvent(TypeMoq.It.isAnyString(),
-                TypeMoq.It.isAnyString(), TypeMoq.It.isAnyString(), TypeMoq.It.isAny()), TypeMoq.Times.never());
-            commandDispatcher.verify(dispatcher => dispatcher.dispatch(TypeMoq.It.isValue(command)), TypeMoq.Times.once());
+            return subject.dispatch(command).then(() => {
+                trackingManager.verify(t => t.forEventWith(TypeMoq.It.isAnyString(),
+                    TypeMoq.It.isAnyString(), TypeMoq.It.isAnyString(), TypeMoq.It.isAny()), TypeMoq.Times.never());
+                commandDispatcher.verify(dispatcher => dispatcher.dispatch(TypeMoq.It.isValue(command)), TypeMoq.Times.once());
+            });
         });
     });
 });
