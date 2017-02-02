@@ -15,9 +15,10 @@ class AnalyticsModule implements IModule {
         container.bind<ITrackingManager>("ITrackingManager").to(TrackingManager).inSingletonScope();
         container.bind<IRouteStrategy>("IRouteStrategy").to(RouteAnalyticsStrategy).inSingletonScope();
 
-        container.unbind("CommandDispatcher");
-        container.bind<CommandDispatcher>("TrackingCommandDispatcher").to(TrackingCommandDispatcher).inSingletonScope().whenInjectedInto(CommandDispatcherEnricher);
-        container.bind<CommandDispatcher>("CommandDispatcher").to(PostCommandDispatcher).inSingletonScope().whenInjectedInto(TrackingCommandDispatcher);
+        container.unbind("ICommandDispatcher");
+        container.bind<ICommandDispatcher>("ICommandDispatcher").to(TrackingCommandDispatcher).inSingletonScope();
+        container.bind<ICommandDispatcher>("ICommandDispatcher").to(CommandDispatcherEnricher).inSingletonScope().whenInjectedInto(TrackingCommandDispatcher);
+        container.bind<CommandDispatcher>("CommandDispatcher").to(PostCommandDispatcher).inSingletonScope().whenInjectedInto(CommandDispatcherEnricher);
     };
 
     register(registry: IViewModelRegistry, serviceLocator?: IServiceLocator, overrides?: any): void {
