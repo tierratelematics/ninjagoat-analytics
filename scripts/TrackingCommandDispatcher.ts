@@ -13,10 +13,12 @@ class TrackingCommandDispatcher implements ICommandDispatcher {
 
 
     dispatch(command: Object, metadata?: Dictionary<any>): Promise<CommandResponse> {
-        if (!Reflect.getMetadata("ninjagoatAnalytics:NotTrack", command.constructor))
-            this.trackingManager.forEvent("", "", "", command);
+        if (!Reflect.getMetadata("ninjagoatAnalytics:NotTrack", command.constructor)) {
+            this.trackingManager.forEvent("", this.type, "", command);
+        }
         return this.commandDispatcher.dispatch();
     }
+
 }
 
 export default TrackingCommandDispatcher
