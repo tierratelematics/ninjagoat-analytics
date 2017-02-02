@@ -30,7 +30,7 @@ describe("Given a trackingCommandDispatcher", () => {
             trackingManager.setup(t => t.forEvent("testCategory", "testAction", "testLabel", TypeMoq.It.isValue(command)));
         });
 
-        it("i should track it", () => {
+        it("should track it", () => {
             subject.dispatch(command);
             trackingManager.verify(t => t.forEvent("testCategory", "testAction", "testLabel", TypeMoq.It.isValue(command)), TypeMoq.Times.once());
             commandDispatcher.verify(dispatcher => dispatcher.dispatch(TypeMoq.It.isValue(command)), TypeMoq.Times.once());
@@ -40,7 +40,7 @@ describe("Given a trackingCommandDispatcher", () => {
     context("and a command that i want't to track", () => {
         beforeEach(() => command = new UnTrackedCommand());
 
-        it("i should not track it", () => {
+        it("should not track it", () => {
             subject.dispatch(command);
             trackingManager.verify(t => t.forEvent(TypeMoq.It.isAnyString(),
                 TypeMoq.It.isAnyString(), TypeMoq.It.isAnyString(), TypeMoq.It.isAny()), TypeMoq.Times.never());
