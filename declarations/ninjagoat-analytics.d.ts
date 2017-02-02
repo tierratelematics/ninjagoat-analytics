@@ -24,10 +24,10 @@ export interface IAnalyticsProvider {
     initialize();
 }
 
-export interface ITrackingManager extends IAnalyticsProvider{
+export interface ITrackingManager extends IAnalyticsProvider {
 }
 
-export class GoogleAnalyticsProvider implements IAnalyticsProvider{
+export class GoogleAnalyticsProvider implements IAnalyticsProvider {
 }
 
 export class TrackPageRouteStrategy implements IRouteStrategy {
@@ -38,10 +38,14 @@ export class GoogleAnalyticsProvider implements IAnalyticsProvider {
     constructor(config: IAnalyticsConfig);
 
     forPage(path: string);
+
     forEventOf(event: Object);
+
     forEvent(category: string, action: string, label: string, value: any);
+
     initialize();
 }
 
 export function Page();
 export function DoNotTrack();
+export function TrackingData(category: string, action?: string, label?: string);

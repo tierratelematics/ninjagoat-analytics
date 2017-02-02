@@ -13,7 +13,8 @@ describe("Given a trackingCommandDispatcher", () => {
 
     let subject: ICommandDispatcher,
         trackingManager: TypeMoq.Mock<ITrackingManager>,
-        commandDispatcher: TypeMoq.Mock<MockCommandDispatcher>;
+        commandDispatcher: TypeMoq.Mock<MockCommandDispatcher>,
+        command: Object;
 
     beforeEach(() => {
         trackingManager = TypeMoq.Mock.ofType(MockTrackingManager);
@@ -24,16 +25,26 @@ describe("Given a trackingCommandDispatcher", () => {
     });
 
     context("and a command that i want to track", () => {
+        beforeEach(() => {
+            command = new TrackedCommand();
+            trackingManager.setup(t => t.forEvent("testCategory", "testAction", "testLabel", TypeMoq.It.isValue(command)));
+        });
+
         it("i should track it", () => {
-            subject.dispatch(new TrackedCommand());
-            trackingManager.verify(t => t.trackEvent(), TypeMoq.Times.once());
+            subject.dispatch(command);
+            trackingManager.verify(t => t.forEvent("testCategory", "testAction", "testLabel", TypeMoq.It.isValue(command)), TypeMoq.Times.once());
+            commandDispatcher.verify(dispatcher => dispatcher.dispatch(TypeMoq.It.isValue(command)), TypeMoq.Times.once());
         });
     });
 
     context("and a command that i want't to track", () => {
+        beforeEach(() => command = new UnTrackedCommand());
+
         it("i should not track it", () => {
-            subject.dispatch(new UnTrackedCommand());
-            trackingManager.verify(t => t.trackEvent(), TypeMoq.Times.never());
+            subject.dispatch(command);
+            trackingManager.verify(t => t.forEvent(TypeMoq.It.isAnyString(),
+                TypeMoq.It.isAnyString(), TypeMoq.It.isAnyString(), TypeMoq.It.isAny()), TypeMoq.Times.never());
+            commandDispatcher.verify(dispatcher => dispatcher.dispatch(TypeMoq.It.isValue(command)), TypeMoq.Times.once());
         });
     });
 });
