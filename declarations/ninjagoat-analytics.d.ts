@@ -5,6 +5,7 @@ import {IServiceLocator} from "ninjagoat";
 import {IRouteStrategy} from "ninjagoat";
 import {RegistryEntry} from "ninjagoat";
 import {RouterState} from "react-router";
+import * as Promise from "bluebird";
 
 export class AnalyticsModule implements IModule {
 
@@ -19,15 +20,12 @@ export interface IAnalyticsConfig {
 
 export interface IAnalyticsProvider {
     forPage(path: string);
-    forEventOf(event: Object);
-    forEvent(category: string, action: string, label: string, value: any);
+    forEvent(event: Object);
+    forEventWith(category: string, action: string, label: string, value: any);
     initialize();
 }
 
 export interface ITrackingManager extends IAnalyticsProvider {
-}
-
-export class GoogleAnalyticsProvider implements IAnalyticsProvider {
 }
 
 export class TrackPageRouteStrategy implements IRouteStrategy {
@@ -36,15 +34,11 @@ export class TrackPageRouteStrategy implements IRouteStrategy {
 
 export class GoogleAnalyticsProvider implements IAnalyticsProvider {
     constructor(config: IAnalyticsConfig);
-
     forPage(path: string);
-
-    forEventOf(event: Object);
-
-    forEvent(category: string, action: string, label: string, value: any);
-
+    forEvent(event: Object);
+    forEventWith(category: string, action: string, label: string, value: any);
     initialize();
 }
 
 export function Page();
-export function TrackingData(category: string, action?: string, label?: string);
+export function Event(category: string, action?: string, label?: string);

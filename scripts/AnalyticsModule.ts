@@ -7,6 +7,7 @@ import GoogleAnalyticsProvider from "./GoogleAnalyticsProvider";
 import {ITrackingManager} from "./interfaces/ITrackingManager";
 import TrackingManager from "./TrackingManager";
 import TrackingCommandDispatcher from "./TrackingCommandDispatcher";
+import {ICommandDispatcher, CommandDispatcherEnricher} from "ninjagoat-commands";
 
 class AnalyticsModule implements IModule {
 
@@ -18,7 +19,6 @@ class AnalyticsModule implements IModule {
         container.unbind("ICommandDispatcher");
         container.bind<ICommandDispatcher>("ICommandDispatcher").to(TrackingCommandDispatcher).inSingletonScope();
         container.bind<ICommandDispatcher>("ICommandDispatcher").to(CommandDispatcherEnricher).inSingletonScope().whenInjectedInto(TrackingCommandDispatcher);
-        container.bind<CommandDispatcher>("CommandDispatcher").to(PostCommandDispatcher).inSingletonScope().whenInjectedInto(CommandDispatcherEnricher);
     };
 
     register(registry: IViewModelRegistry, serviceLocator?: IServiceLocator, overrides?: any): void {
