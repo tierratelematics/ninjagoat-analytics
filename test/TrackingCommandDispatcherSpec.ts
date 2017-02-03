@@ -1,6 +1,6 @@
 import "reflect-metadata";
 import expect = require("expect.js");
-import {ICommandDispatcher} from "ninjagoat-commands";
+import {ICommandDispatcher, CommandResponse} from "ninjagoat-commands";
 import * as TypeMoq from "typemoq";
 import {ITrackingManager} from "../scripts/interfaces/ITrackingManager";
 import {MockCommandDispatcher} from "./fixtures/MockCommandDispatcher";
@@ -21,7 +21,7 @@ describe("Given a trackingCommandDispatcher", () => {
         commandDispatcher = TypeMoq.Mock.ofType(MockCommandDispatcher);
         subject = new TrackingCommandDispatcher(trackingManager.object, commandDispatcher.object);
 
-        commandDispatcher.setup(dispatcher => dispatcher.dispatch(TypeMoq.It.isAny())).returns(() => Promise.resolve("url"));
+        commandDispatcher.setup(dispatcher => dispatcher.dispatch(TypeMoq.It.isAny())).returns(() => Promise.resolve<CommandResponse>(null));
     });
 
     context("and a command to be tracked", () => {

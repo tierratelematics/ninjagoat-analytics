@@ -1,4 +1,4 @@
-import {ICommandDispatcher} from "ninjagoat-commands";
+import {ICommandDispatcher, CommandResponse} from "ninjagoat-commands";
 import {Dictionary} from "ninjagoat";
 import * as Promise from "bluebird";
 
