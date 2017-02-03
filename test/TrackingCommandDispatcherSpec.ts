@@ -21,7 +21,7 @@ describe("Given a trackingCommandDispatcher", () => {
         commandDispatcher = TypeMoq.Mock.ofType(MockCommandDispatcher);
         subject = new TrackingCommandDispatcher(trackingManager.object, commandDispatcher.object);
 
-        commandDispatcher.setup(dispatcher => dispatcher.dispatch(TypeMoq.It.isAny())).returns(() => Promise.resolve("url"));
+        commandDispatcher.setup(dispatcher => dispatcher.dispatch(TypeMoq.It.isAny())).returns(() => Promise.resolve<CommandResponse>(null));
     });
 
     context("and a command to be tracked", () => {
