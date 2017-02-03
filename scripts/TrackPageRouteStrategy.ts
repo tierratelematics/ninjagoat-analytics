@@ -12,7 +12,7 @@ class TrackPageRouteStrategy implements IRouteStrategy {
     }
 
     enter(entry: RegistryEntry<any>, nextState: RouterState): Promise<string> {
-       return this.routeStrategy.enter(entry, nextState).then(url => {
+        return this.routeStrategy.enter(entry, nextState).then(url => {
             let needTracking = <boolean>Reflect.getMetadata("ninjagoat:page", entry.construct);
             if (needTracking)
                 this.trackingManager.forPage(nextState.location.pathname);
