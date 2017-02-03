@@ -1,6 +1,6 @@
 import "reflect-metadata";
 import expect = require("expect.js");
-import {ICommandDispatcher} from "ninjagoat-commands";
+import {ICommandDispatcher, CommandResponse} from "ninjagoat-commands";
 import * as TypeMoq from "typemoq";
 import {ITrackingManager} from "../scripts/interfaces/ITrackingManager";
 import {MockCommandDispatcher} from "./fixtures/MockCommandDispatcher";
