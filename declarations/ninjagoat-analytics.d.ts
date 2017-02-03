@@ -29,14 +29,20 @@ export interface ITrackingManager extends IAnalyticsProvider {
 }
 
 export class TrackPageRouteStrategy implements IRouteStrategy {
+    constructor(trackingManager: ITrackingManager, routeStrategy: IRouteStrategy);
+
     enter(entry: RegistryEntry<any>, nextState: RouterState): Promise<string>;
 }
 
 export class GoogleAnalyticsProvider implements IAnalyticsProvider {
     constructor(config: IAnalyticsConfig);
+
     forPage(path: string);
+
     forEvent(event: Object);
+
     forEventWith(category: string, action: string, label: string, value: any);
+
     initialize();
 }
 

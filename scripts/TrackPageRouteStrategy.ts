@@ -8,7 +8,7 @@ import * as Promise from "bluebird";
 class TrackPageRouteStrategy implements IRouteStrategy {
 
     constructor(@inject("ITrackingManager") private trackingManager: ITrackingManager,
-                @inject("IRouteStrategy") private routeStrategy: IRouteStrategy) {
+                @inject("RouteStrategy") private routeStrategy: IRouteStrategy) {
     }
 
     enter(entry: RegistryEntry<any>, nextState: RouterState): Promise<string> {
