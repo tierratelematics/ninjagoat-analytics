@@ -9,7 +9,6 @@ import {ITrackingManager} from "../scripts/interfaces/ITrackingManager";
 import {MockTrackingManager} from "./fixtures/MockTrackingManager";
 import TestLocation from "./fixtures/TestLocation";
 import {MockRouteStrategy} from "./fixtures/MockRouteStrategy";
-import * as Promise from "bluebird";
 
 describe("Given a TrackPageRouteStrategy and a page", () => {
     let subject: TrackPageRouteStrategy,

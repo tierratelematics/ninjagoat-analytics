@@ -2,7 +2,6 @@ import {RegistryEntry, IRouteStrategy} from "ninjagoat";
 import {RouterState} from "react-router";
 import {inject, injectable} from "inversify";
 import {ITrackingManager} from "./interfaces/ITrackingManager";
-import * as Promise from "bluebird";
 
 @injectable()
 class TrackPageRouteStrategy implements IRouteStrategy {

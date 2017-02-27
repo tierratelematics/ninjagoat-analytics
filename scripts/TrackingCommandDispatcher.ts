@@ -2,7 +2,6 @@ import {injectable, inject} from "inversify";
 import {Dictionary} from "ninjagoat";
 import {ICommandDispatcher, CommandResponse} from "ninjagoat-commands";
 import {ITrackingManager} from "./interfaces/ITrackingManager";
-import * as Promise from "bluebird";
 
 @injectable()
 class TrackingCommandDispatcher implements ICommandDispatcher {
