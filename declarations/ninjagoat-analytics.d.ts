@@ -5,7 +5,6 @@ import {IServiceLocator} from "ninjagoat";
 import {IRouteStrategy} from "ninjagoat";
 import {RegistryEntry} from "ninjagoat";
 import {RouterState} from "react-router";
-import * as Promise from "bluebird";
 
 export class AnalyticsModule implements IModule {
 
