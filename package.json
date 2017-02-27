@@ -1,6 +1,6 @@
 {
   "name": "ninjagoat-analytics",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "dependencies": {
     "@types/lodash": "~4.14.43",
     "@types/node": "~6.0.52",
@@ -21,8 +21,8 @@
     "typemoq": "~0.2.0"
   },
   "peerDependencies": {
-    "ninjagoat": "^0.15.0",
-    "ninjagoat-commands": "^0.4.1",
+    "ninjagoat": "^1.0.0",
+    "ninjagoat-commands": "^1.0.0",
     "react-router": "^3.0.0"
   },
   "scripts": {

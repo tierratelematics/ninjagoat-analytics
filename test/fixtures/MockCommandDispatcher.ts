@@ -1,6 +1,5 @@
 import {ICommandDispatcher, CommandResponse} from "ninjagoat-commands";
 import {Dictionary} from "ninjagoat";
-import * as Promise from "bluebird";
 
 export class MockCommandDispatcher implements ICommandDispatcher {
 

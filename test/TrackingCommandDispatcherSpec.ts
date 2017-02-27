@@ -7,7 +7,6 @@ import {MockCommandDispatcher} from "./fixtures/MockCommandDispatcher";
 import {MockTrackingManager} from "./fixtures/MockTrackingManager";
 import TrackingCommandDispatcher from "../scripts/TrackingCommandDispatcher";
 import {TrackedCommand, UnTrackedCommand} from "./fixtures/MockCommands";
-import * as Promise from "bluebird";
 
 describe("Given a trackingCommandDispatcher", () => {
 
