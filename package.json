@@ -2,7 +2,7 @@
   "name": "ninjagoat-analytics",
   "version": "0.2.0",
   "dependencies": {
-    "@types/lodash": "~4.14.43",
+    "@types/lodash": "4.14.43",
     "@types/node": "~6.0.52",
     "@types/universal-analytics": "~0.3.27",
     "@types/react": "~0.14.55",
