@@ -1,4 +1,80 @@
-#Ninjagoat-analytics
+# Ninjagoat-analytics
+
+This module can be used to include analytics tools inside [nijagoat](https://github.com/tierratelematics/ninjagoat) powered applications. 
+
+## Installation
+
+`
+$ npm install ninjagoat-analytics
+`
+
+Add this code to the bootstrapper.ts file:
+
+```typescript
+import {AnalyticsModule} from "ninjagoat-analytics";
+
+let application = new LocalizedApplication();
+application.register(new AnalyticsModule());
+```
+
+Set the google analytics account id in one of your modules.
+
+```typescript
+import {ITranslationsConfig} from "ninjagoat-translations"
+
+container.bind<IAnalyticsConfig>("IAnalyticsConfig").toConstantValue({
+   "analytics" : {
+     "accountID":"UA-XXXXXXXXX-X"
+   }
+ });
+
+```
+
+## Usage
+
+To track a page inside a viewmodel use a Page Decorator.
+
+```typescript
+@Page()
+class MyViewModel extends ObservableViewModel<MyModel> {
+}
+```
+
+To track an event inside a command use an Event Decorator.
+
+```typescript
+@Event("myCategory")
+export class MyCommand {
+    
+}
+```
+
+### Custom Analytics Provider
+
+By default the module implements a Google Analytics Provider.
+If you need a different Analytics Provider you can implement your own IAnalyticsProvider and register it.   
+
+```typescript
+class MyAnalyticsProvider implements IAnalyticsProvider {
+    forPage(path: string){
+        
+    }
+
+    forEvent(event: Object){
+        
+    }
+
+    forEventWith(category: string, action: string, label: string, value: any){
+        
+    }
+
+    initialize(){
+        
+    }
+}
+
+container.bind<IAnalyticsProvider>("IAnalyticsProvider").to(MyAnalyticsProvider).inSingletonScope();
+```
 
 ## License
 
