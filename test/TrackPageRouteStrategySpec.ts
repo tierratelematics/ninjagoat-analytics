@@ -34,7 +34,7 @@ describe("Given a TrackPageRouteStrategy and a page", () => {
             return subject.enter({
                 construct: TrackedViewModel,
                 id: null,
-                observableFactory: null,
+                source: null,
                 parameters: null
             }, routerState).then(() => {
                 trackingManager.verify(tracker => tracker.forPage("/testLocation"), TypeMoq.Times.once());
@@ -47,7 +47,7 @@ describe("Given a TrackPageRouteStrategy and a page", () => {
             return subject.enter({
                 construct: UntrackedViewModel,
                 id: null,
-                observableFactory: null,
+                source: null,
                 parameters: null
             }, routerState).then(() => {
                 trackingManager.verify(tracker => tracker.forPage("/testLocation"), TypeMoq.Times.never());
