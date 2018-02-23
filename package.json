@@ -26,6 +26,6 @@
   "scripts": {
     "test": "smild test"
   },
-  "main": "dist/ninjagoat-analytics.js",
-  "typings": "declarations/ninjagoat-analytics.d.ts"
+  "main": "dist",
+  "typings": "dist"
 }
