@@ -1,3 +1,7 @@
+# 0.5.0
+
+Update to latest libraries (ninjagoat, inversify, etc)
+
 # 0.4.0
 
 Bump to ninjagoat 2.4.0
