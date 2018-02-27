@@ -1,6 +1,6 @@
 # Ninjagoat-analytics
 
-This module can be used to include analytics tools inside [nijagoat](https://github.com/tierratelematics/ninjagoat) powered applications. 
+This module can be used to include analytics tools inside [ninjagoat](https://github.com/tierratelematics/ninjagoat) powered applications. 
 
 ## Installation
 
