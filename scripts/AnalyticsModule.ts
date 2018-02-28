@@ -7,7 +7,7 @@ import GoogleAnalyticsProvider from "./GoogleAnalyticsProvider";
 import {ITrackingManager} from "./interfaces/ITrackingManager";
 import TrackingManager from "./TrackingManager";
 import TrackingCommandDispatcher from "./TrackingCommandDispatcher";
-import {ICommandDispatcher, CommandDispatcherEnricher} from "ninjagoat-commands";
+import {ICommandDispatcher, CommandDispatcherEnricher, PostCommandDispatcher} from "ninjagoat-commands";
 
 class AnalyticsModule implements IModule {
 
@@ -16,8 +16,10 @@ class AnalyticsModule implements IModule {
         container.bind<IRouteStrategy>("IRouteStrategy").to(TrackPageRouteStrategy).inSingletonScope();
 
         container.unbind("ICommandDispatcher");
+        container.unbind("CommandDispatcher");
         container.bind<ICommandDispatcher>("ICommandDispatcher").to(TrackingCommandDispatcher).inSingletonScope();
-        container.bind<ICommandDispatcher>("ICommandDispatcher").to(CommandDispatcherEnricher).inSingletonScope().whenInjectedInto(TrackingCommandDispatcher);
+        container.bind<ICommandDispatcher>("CommandDispatcher").to(CommandDispatcherEnricher).whenInjectedInto(TrackingCommandDispatcher);
+        container.bind<ICommandDispatcher>("CommandDispatcher").to(PostCommandDispatcher).whenInjectedInto(CommandDispatcherEnricher);
 
         container.bind<IAnalyticsProvider>("IAnalyticsProvider").to(GoogleAnalyticsProvider).inSingletonScope();
         container.bind<ITrackingManager>("ITrackingManager").to(TrackingManager).inSingletonScope();
