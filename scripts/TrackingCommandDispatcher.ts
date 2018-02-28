@@ -16,14 +16,14 @@ class TrackingCommandDispatcher implements ICommandDispatcher {
     dispatch(command: Object, metadata?: Dictionary<any>): Promise<CommandResponse> {
         if (Reflect.getMetadata("ninjagoatAnalytics:category", command.constructor)) {
             this.extractTrackingMetadata(command);
-            this.trackingManager.forEventWith(this.category, this.action, this.label, command);
+            this.trackingManager.forEvent(this.category, this.action, this.label, command);
         }
         return this.commandDispatcher.dispatch(command);
     }
 
     private extractTrackingMetadata(command: Object): void {
         this.category = Reflect.getMetadata("ninjagoatAnalytics:category", command.constructor);
-        this.action = Reflect.getMetadata("ninjagoatAnalytics:action", command.constructor) || "";
+        this.action = Reflect.getMetadata("ninjagoatAnalytics:action", command.constructor);
         this.label = Reflect.getMetadata("ninjagoatAnalytics:label", command.constructor) || "";
     }
 }

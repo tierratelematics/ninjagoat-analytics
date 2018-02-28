@@ -23,19 +23,10 @@ describe("Given a TrackingManager", () => {
         });
     });
 
-    context("when tracking a custom event", () => {
-        beforeEach(() => event = {category: "testCategory", label: "testLabel"});
-
-        it("should call the custom event tracking method of every provider registered", () => {
-            subject.forEvent(event);
-            analyticsProvider.verify(p => p.forEvent(TypeMoq.It.isValue(event)), TypeMoq.Times.once());
-        });
-    });
-
     context("when tracking a standard event", () => {
         it("should call the standard event tracking method of every provider registered", () => {
-            subject.forEventWith("testCategory", "testAction", "testLabel", null);
-            analyticsProvider.verify(p => p.forEventWith("testCategory", "testAction", "testLabel", null), TypeMoq.Times.once());
+            subject.forEvent("testCategory", "testAction", "testLabel", null);
+            analyticsProvider.verify(p => p.forEvent("testCategory", "testAction", "testLabel", null), TypeMoq.Times.once());
         });
     });
 
