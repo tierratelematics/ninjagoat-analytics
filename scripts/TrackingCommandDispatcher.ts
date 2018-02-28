@@ -23,7 +23,7 @@ class TrackingCommandDispatcher implements ICommandDispatcher {
 
     private extractTrackingMetadata(command: Object): void {
         this.category = Reflect.getMetadata("ninjagoatAnalytics:category", command.constructor);
-        this.action = Reflect.getMetadata("ninjagoatAnalytics:action", command.constructor) || "";
+        this.action = Reflect.getMetadata("ninjagoatAnalytics:action", command.constructor);
         this.label = Reflect.getMetadata("ninjagoatAnalytics:label", command.constructor) || "";
     }
 }
