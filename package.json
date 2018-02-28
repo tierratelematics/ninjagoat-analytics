@@ -1,6 +1,6 @@
 {
   "name": "ninjagoat-analytics",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "dependencies": {
     "inversify": "^4.3.0",
     "lodash": "^4.17.5",
