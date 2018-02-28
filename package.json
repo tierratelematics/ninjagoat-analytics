@@ -19,8 +19,8 @@
     "typemoq": "~0.2.0"
   },
   "peerDependencies": {
-    "ninjagoat": "^3.0.0",
-    "ninjagoat-commands": "^3.3.0"
+    "ninjagoat": ">= 3 <= 4",
+    "ninjagoat-commands": ">= 3 <= 4"
   },
   "scripts": {
     "test": "smild test"
