@@ -2,10 +2,9 @@ language: node_js
 node_js:
 - '6'
 install:
-- npm install
 - npm install smild@4.13.0 -g
-- npm install ninjagoat@3.0.0
-- npm install ninjagoat-commands@3.3.0
+- npm install
+- npm install ninjagoat@3 ninjagoat-commands@3 react@15 react-dom@15
 script: smild test && smild build
 deploy:
   skip_cleanup: true
