@@ -1,3 +1,8 @@
+# 0.6.0
+
+* switch to react-ga
+* bugfixes
+
 # 0.5.0
 
 Update to latest libraries (ninjagoat, inversify, etc)
