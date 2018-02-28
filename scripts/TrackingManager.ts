@@ -13,12 +13,8 @@ class TrackingManager implements ITrackingManager {
         forEach(this.analyticsProviders, (tracker: IAnalyticsProvider) => tracker.forPage(path));
     }
 
-    forEvent(event: Object) {
-        forEach(this.analyticsProviders, (tracker: IAnalyticsProvider) => tracker.forEvent(event));
-    }
-
-    forEventWith(category: string, action: string, label: string, value: any) {
-        forEach(this.analyticsProviders, (tracker: IAnalyticsProvider) => tracker.forEventWith(category, action, label, value));
+    forEvent(category: string, action: string, label: string, value: any) {
+        forEach(this.analyticsProviders, (tracker: IAnalyticsProvider) => tracker.forEvent(category, action, label, value));
     }
 
     initialize() {

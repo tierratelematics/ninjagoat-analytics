@@ -1,7 +1,7 @@
 import IAnalyticsProvider from "./interfaces/IAnalyticsProvider";
 import {inject, injectable} from "inversify";
 import IAnalyticsConfig from "./interfaces/IAnalyticsConfig";
-const universalAnalytics = require("universal-analytics");
+import { initialize, pageview, event } from "react-ga";
 
 @injectable()
 class GoogleAnalyticsProvider implements IAnalyticsProvider {
@@ -11,19 +11,15 @@ class GoogleAnalyticsProvider implements IAnalyticsProvider {
     }
 
     forPage(path: string) {
-        this.client.pageview(path).send();
+        pageview(path);
     }
 
-    forEvent(event: Object){
-        this.client.event(event).send();
-    }
-
-    forEventWith(category: string, action: string, label: string, value: any){
-        this.client.event(category, action, label, value).send();
+    forEvent(category: string, action: string, label: string, value: any) {
+        event({ category, action, label, value });
     }
 
     initialize() {
-        this.client = universalAnalytics(this.config.accountID);
+        initialize(this.config.accountID);
     }
 }
 
