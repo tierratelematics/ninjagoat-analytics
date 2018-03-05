@@ -1,3 +1,7 @@
+# 0.6.1
+
+Avoid duplicated lodash versions
+
 # 0.6.0
 
 * switch to react-ga
