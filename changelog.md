@@ -1,3 +1,7 @@
+# 0.7.0
+
+Add options to events
+
 # 0.6.1
 
 Avoid duplicated lodash versions
