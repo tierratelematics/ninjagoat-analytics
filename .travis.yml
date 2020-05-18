@@ -1,12 +1,14 @@
 language: node_js
+version: 1.0
 node_js:
-- '6'
+  - "10"
 install:
 - npm install smild@4.13.0 -g
-- npm install
+- npm ci
 - npm install ninjagoat@3 ninjagoat-commands@3 react@15 react-dom@15
 script: smild test && smild build
 deploy:
+  edge: true
   skip_cleanup: true
   provider: npm
   email: sysadmin@tierratelematics.com
