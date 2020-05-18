@@ -25,9 +25,8 @@ describe("Given a TrackingManager", () => {
 
     context("when tracking a standard event", () => {
         it("should call the standard event tracking method of every provider registered", () => {
-            subject.forEvent("testCategory", "testAction", "testLabel", null);
-            analyticsProvider.verify(p => p.forEvent("testCategory", "testAction", "testLabel", null), TypeMoq.Times.once());
+            subject.forEvent("testCategory", "testAction", "testLabel", null, undefined);
+            analyticsProvider.verify(p => p.forEvent("testCategory", "testAction", "testLabel", null, undefined), TypeMoq.Times.once());
         });
     });
-
 });
