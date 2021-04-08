@@ -1,3 +1,7 @@
+# 0.7.1 
+
+Fix lodash version
+
 # 0.7.0
 
 Add options to events
