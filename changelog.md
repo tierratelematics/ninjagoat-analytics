@@ -1,3 +1,7 @@
+# 1.0.0-rc.0
+
+Update to rxjs 6
+
 # 0.7.1 
 
 Fix lodash version
