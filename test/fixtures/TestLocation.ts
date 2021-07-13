@@ -8,6 +8,7 @@ class TestLocation {
     action: History.Action;
     key: History.LocationKey;
     basename?: string;
+    hash: string;
 }
 
 export default TestLocation;
